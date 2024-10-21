@@ -1,24 +1,21 @@
-const body = document.body
-
 const container = document.createElement("div")
 container.style.width = "400px"
 container.style.height = "400px"
 container.style.border = "1px solid black"
+container.style.padding = "10px"
 
-document.querySelector('.heading')
+const form = document.getElementById("form")
 
 const div = document.createElement("div")
 div.innerHTML = "<strong>Sign up for your destination today!</strong>"
 
 const newParagraph = document.createElement("p")
 newParagraph.textContent = "To Login In or Sign Up"
-newParagraph.setAttribute('class', '.heading')
 
 const button = document.createElement("button")
 button.textContent = "Click here"
 
 container.appendChild(newParagraph)
+container.appendChild(div)
 newParagraph.appendChild(button)
-body.append(div)
-
-body.appendChild(container)
+form.appendChild(container)
