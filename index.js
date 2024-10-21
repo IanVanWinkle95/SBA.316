@@ -1,21 +1,24 @@
-const container = document.createElement("div")
-container.style.width = "400px"
-container.style.height = "400px"
-container.style.border = "1px solid black"
-container.style.padding = "10px"
+// import "./styles.css"
 
 const form = document.getElementById("form")
+
+const continents = document.querySelector("#continent-select")
+continents.addEventListener("click", (a) => {
+  console.log("Selected Continent:", a.target.value)
+})
+
+form.style.border = "1px solid black"
+form.style.padding = "10px"
 
 const div = document.createElement("div")
 div.innerHTML = "<strong>Sign up for your destination today!</strong>"
 
-const newParagraph = document.createElement("p")
-newParagraph.textContent = "To Login In or Sign Up"
+const btn = document.createElement("button")
+btn.textContent = "Click here"
+btn.addEventListener("click", () => {
+    alert("Sign Up")
+    return btn
+  });
 
-const button = document.createElement("button")
-button.textContent = "Click here"
-
-container.appendChild(newParagraph)
-container.appendChild(div)
-newParagraph.appendChild(button)
-form.appendChild(container)
+form.appendChild(div)
+form.appendChild(btn)

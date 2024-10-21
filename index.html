@@ -9,7 +9,6 @@
 </head>
 <body>
     <form
-      action="javascript: alert('Submitted!');"
       name="myForm"
       method="POST"
       id="form"
@@ -17,6 +16,15 @@
     <input type="text" name="name" placeholder="Name" />
     <input type="text" name="email" placeholder="Email" />
     <input type="password" name="password" placeholder="Password" />
-    <input type="submit" value="Submit" />
+    <select name="continent" id="continent-select">
+      <option value="">Select Destination</option>
+      <option value="Asia">Asia</option>
+      <option value="Africa">Africa</option>
+      <option value="North America">North America</option>
+      <option value="South America">South America</option>
+      <option value="Antarctica">Antarctica</option>
+      <option value="Europe">Europe</option>
+      <option value="Austalia">Australia</option>
+    </select>
 </body>
 </html>
