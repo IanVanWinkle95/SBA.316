@@ -1,16 +1,37 @@
 body {
-    font-family: sans-serif;
-    background: #85baa1;
-    
+  font-family: sans-serif;
+  background: #85baa1;
+
 }
 
 form {
-    margin: 10%;
-    height: 65vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #ceeddb;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10%;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ceeddb;
+}
+
+.title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #3e8e41;
 }
 
 input,
@@ -26,4 +47,10 @@ input:hover,
 select:hover {
   border: 1px solid #144fe6;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.499);
+}
+
+#warning-box {
+  color: red;
+  font-size: 15px;
+  margin-bottom: 15px;
 }
