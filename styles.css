@@ -17,8 +17,7 @@ form {
 
 .title {
   font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .btn {
@@ -53,4 +52,13 @@ select:hover {
   color: red;
   font-size: 15px;
   margin-bottom: 15px;
+}
+
+.warning {
+  color: red;
+  font-weight: 12px;
+}
+
+.active {
+  background-color: #163c18;
 }
