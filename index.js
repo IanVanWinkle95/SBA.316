@@ -17,12 +17,30 @@ document.addEventListener("DOMContentLoaded", (evt) => {
   const name = document.getElementById("name")
   form.appendChild(title)
   form.appendChild(btn)
+
+  const parent = form.parentNode
+  console.log(parent)
+
+  const firstChild = form.firstChild
+  console.log(firstChild)
+
   // form.appendChild(createWarningBox())
   form.addEventListener("submit", validate)
   form.addEventListener("click", displayResult)
 
-  // submitBtn.classList.add("active");
-  // submitBtn.style.backgroundColor = "#8e44ad";
+  // submitBtn.classList.add("active")
+  // submitBtn.style.backgroundColor = "#8e44ad"
+
+  const inputs = document.querySelectorAll("input")
+  inputs.forEach( (input) => {
+    console.log(input.id)
+  })
+
+  const fragment = document.createDocumentFragment()
+  const newElement = document.createElement("div")
+  newElement.textContent = "New Element"
+  fragment.appendChild(newElement)
+  form.appendChild(fragment)
 
   // ----------------Functions----------------------------
 
@@ -33,43 +51,51 @@ document.addEventListener("DOMContentLoaded", (evt) => {
     div.classList.add("title")
     return div
   }
-  // Not sure why my Title and Btn do not show up. 
-  // Was working at earlier stages of the project. 
+
   function createBtn() {
     const btn = document.createElement("button")
-    btn.textContent = "Click here"
-    // btn.addEventListener("click", signUp)
+    btn.textContent = "submit"
     btn.classList.add("btn")
+
+    btn.addEventListener("mouseover", () => {
+      console.log("button hover")
+    })
+    // btn.addEventListener("click", signUp)
+    
     // btn.addEventListener("click", () => {
     //   alert("Sign Up")
     return btn
   }
+  const nameInput = document.getElementById("name")
+  nameInput.setAttribute("maxlength", "10")
 
-const email = document.getElementById("email")
-
- const emailInput = document.createElement("input")
-  emailInput.type = "email"
-  emailInput.required = true
-  emailInput.pattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-  form.appendChild(emailInput)
+  const email = document.getElementById("email")
+  // email.setAttribute = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+  email.required = true
+  email.addEventListener("input", () => {
+    if (!email.value.includes("@")) {
+      console.log("Invalid email format")
+    }
+  })
+  form.appendChild(email)
 
   function validate(evt) {
-    const nameVal = validateName();
+    const nameVal = validateName()
     if (nameVal === false) {
-      evt.returnValue = false;
-      return false;
+      evt.returnValue = false
+      return false
     }
 
-    const emailVal = validateEmail();
+    const emailVal = validateEmail()
     if (emailVal === false) {
-      evt.returnValue = false;
-      return false;
+      evt.returnValue = false
+      return false
     }
 
     alert(`Name: ${nameVal}
       Email: ${emailVal}`)
 
-    return true;
+    return true
   }
 
   function validateName() {
@@ -85,88 +111,93 @@ const email = document.getElementById("email")
   // make it so they could only use lowercase letters in the name section.
 
   function checkName(evt) {
-    
-    const charCode = evt.charCode;
-    console.log(charCode)
-    // const allowableChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","y","x","z"]
-    // for (i = 0; i < allowableChars.length; i++)
-      // if (allowableChars == evt)
-      //  {console.log("goodChar") 
-      //   return true } 
+    const charCode = evt.charCode
+    // console.log(charCode)
+    const allowableChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "y", "x", "z"]
+    for (i = 0; i < allowableChars.length; i++)
+      if (allowableChars = evt) {
+        // console.log("goodChar")
+        return true
+      } else {
 
-      // Wanted to make a fun for loop but it wasn't working the way I wanted. ^
-
-    if (charCode !== 0) {
-      if (charCode < 97 || charCode > 122) {
-        evt.preventDefault();
-        displayWarning("Please use lowercase letters only.");
+      evt.preventDefault()
+      displayWarning("Use lower case letters")
       }
-    }
+
+    // Wanted to make a fun for loop but it doesn't work the way I want. 
+    // The Code below works but wanted to make sure I had my for loop.
+
+    // if (charCode !== 0) {
+    //   if (charCode < 97 || charCode > 122) {
+    //     evt.preventDefault()
+    //     displayWarning("Please use lowercase letters only.")
+    //   }
+    // }
   }
 
   function displayResult() {
     const selectedContinent = continents.value
+    if (selectedContinent === "") {}
     const name = userName.value
     const result = `Selected continent ${selectedContinent}.`
     const resultContinent = document.getElementById("result-container")
-    // resultContinent.textContent = result
+    resultContinent.textContent = result
   }
 
   function validateEmail() {
-    let emailVal = email.value;
+    let emailVal = email.value
 
     if (emailVal === "") {
-      alert("Please provide an email.");
-      email.focus();
-      return false;
+      alert("Please provide an email.")
+      email.focus()
+      return false
     }
 
-    const atpos = emailVal.indexOf("@");
-    const dotpos = emailVal.lastIndexOf(".");
+    const atpos = emailVal.indexOf("@")
+    const dotpos = emailVal.lastIndexOf(".")
 
     if (atpos < 1) {
       alert("Your email must include an @ symbol which must not be at the beginning of the email.");
-      email.focus();
-      return false;
+      email.focus()
+      return false
     }
 
     if (dotpos - atpos < 2) {
       alert("Invalid structure: @.\nYou must include a domain name after the @ symbol.");
-      email.focus();
-      return false;
+      email.focus()
+      return false
     }
     return emailVal
   }
 
+  function createWarningBox() {
+    const warningBox = document.createElement("div")
+    warningBox.className = "warning"
+    return warningBox
+  }
 
+  // let warningTimeout;
 
-    function createWarningBox() {
-      const warningBox = document.createElement("div")
-      warningBox.className = "warning"
-      return warningBox
-    }
+  function displayWarning(msg) {
+    const warningBox = createWarningBox()
+    form.appendChild(warningBox)
+    warningBox.textContent = msg
+    setTimeout(() => {
+      warningBox.remove ()
+    }, 2000)
+  }
 
-    // let warningTimeout;
-    function displayWarning(msg) {
-      
-      const warningBox = createWarningBox () 
-      warningBox.textContent = msg
-      setTimeout(() => {
-        warningBox.textContent = ""
-      }, 2000)
-    }
-  
-    // ----------------------------------------------------
+  // ----------------------------------------------------
 
-    form.style.border = "1px solid black"
-    form.style.padding = "10px"
+  form.style.border = "1px solid black"
+  form.style.padding = "10px"
 
-    console.log(window.innerWidth)
-    console.log(window.innerHeight)
+  console.log(window.innerWidth)
+  console.log("http://127.0.0.1:5500/SBA.316/index.html" + window.location.href)
 
-    // Was trying to edit the page with both CSS and JS.
-    // Ran into issues with one or the other working but not both.
+  // Was trying to edit the page with both CSS and JS.
+  // Ran into issues with one or the other working but not both.
 
-    console.log(form.parentNode)
-    console.log(form.childNodes)
-  })
+  console.log(form.parentNode)
+  console.log(form.childNodes)
+})
