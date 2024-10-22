@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", (evt) => {
 
   const userName = document.getElementById("name")
   userName.addEventListener("keypress", checkName, false)
-  // userName.setAttribute("Enter Name")
+  userName.setAttribute("placeholder", "Enter Name")
 
   const continents = document.querySelector("#continent-select")
   continents.addEventListener("click", (a) => {
@@ -45,6 +45,14 @@ document.addEventListener("DOMContentLoaded", (evt) => {
     return btn
   }
 
+const email = document.getElementById("email")
+
+ const emailInput = document.createElement("input")
+  emailInput.type = "email"
+  emailInput.required = true
+  emailInput.pattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+  form.appendChild(emailInput)
+
   function validate(evt) {
     const nameVal = validateName();
     if (nameVal === false) {
@@ -77,11 +85,20 @@ document.addEventListener("DOMContentLoaded", (evt) => {
   // make it so they could only use lowercase letters in the name section.
 
   function checkName(evt) {
-    evt.preventDefault();
+    
     const charCode = evt.charCode;
     console.log(charCode)
+    // const allowableChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","y","x","z"]
+    // for (i = 0; i < allowableChars.length; i++)
+      // if (allowableChars == evt)
+      //  {console.log("goodChar") 
+      //   return true } 
+
+      // Wanted to make a fun for loop but it wasn't working the way I wanted. ^
+
     if (charCode !== 0) {
       if (charCode < 97 || charCode > 122) {
+        evt.preventDefault();
         displayWarning("Please use lowercase letters only.");
       }
     }
@@ -92,7 +109,7 @@ document.addEventListener("DOMContentLoaded", (evt) => {
     const name = userName.value
     const result = `Selected continent ${selectedContinent}.`
     const resultContinent = document.getElementById("result-container")
-    resultContinent.textContent = result
+    // resultContinent.textContent = result
   }
 
   function validateEmail() {
@@ -118,7 +135,10 @@ document.addEventListener("DOMContentLoaded", (evt) => {
       email.focus();
       return false;
     }
-    return emailVal;
+    return emailVal
+  }
+
+
 
     function createWarningBox() {
       const warningBox = document.createElement("div")
@@ -126,15 +146,16 @@ document.addEventListener("DOMContentLoaded", (evt) => {
       return warningBox
     }
 
-    let warningTimeout;
+    // let warningTimeout;
     function displayWarning(msg) {
-      const warningBox = document.querySelector(".warning")
+      
+      const warningBox = createWarningBox () 
       warningBox.textContent = msg
       setTimeout(() => {
         warningBox.textContent = ""
       }, 2000)
     }
-
+  
     // ----------------------------------------------------
 
     form.style.border = "1px solid black"
@@ -143,10 +164,9 @@ document.addEventListener("DOMContentLoaded", (evt) => {
     console.log(window.innerWidth)
     console.log(window.innerHeight)
 
-
     // Was trying to edit the page with both CSS and JS.
     // Ran into issues with one or the other working but not both.
 
     console.log(form.parentNode)
     console.log(form.childNodes)
-  }})
+  })
